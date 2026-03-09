@@ -29,7 +29,7 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px;
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -49,18 +49,28 @@
             line-height: 1.5;
         }
         
-        .countdown {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .notice {
+            background: rgba(255, 193, 7, 0.2);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
             margin: 20px 0;
-            color: #4ecdc4;
-            animation: pulse 1s infinite;
+            text-align: left;
+            border-radius: 5px;
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .notice h3 {
+            color: #ffc107;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .notice ul {
+            margin-left: 20px;
+            color: #e0e0e0;
+        }
+        
+        .notice li {
+            margin: 8px 0;
         }
         
         .download-btn {
@@ -74,7 +84,7 @@
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
-            margin-top: 20px;
+            margin: 10px;
         }
         
         .download-btn:hover {
@@ -82,9 +92,19 @@
             box-shadow: 0 6px 20px rgba(78, 205, 196, 0.6);
         }
         
+        .download-btn.secondary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+        
         .features {
             margin-top: 40px;
             text-align: left;
+        }
+        
+        .features h3 {
+            color: #4ecdc4;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
         }
         
         .feature-item {
@@ -106,53 +126,69 @@
             font-size: 0.9rem;
             color: #999999;
         }
-    </style>
-    <script>
-        // 自动跳转倒计时
-        let seconds = 5;
-        const countdownElement = document.getElementById('countdown');
         
-        function updateCountdown() {
-            if (seconds > 0) {
-                countdownElement.textContent = seconds;
-                seconds--;
-                setTimeout(updateCountdown, 1000);
-            } else {
-                // 跳转到下载链接
-                window.location.href = 'https://github.com/user/repository/releases/download/v1.0.0/lockscreen_wallpaper.apk';
-            }
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            text-align: left;
+            margin: 10px 0;
+            color: #a8dadc;
+            overflow-x: auto;
         }
-        
-        // 页面加载完成后开始倒计时
-        window.onload = function() {
-            updateCountdown();
-        };
-    </script>
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>锁屏时间壁纸应用</h1>
         <p>自动更新锁屏壁纸，实时显示当前时间和日期</p>
         
-        <div class="countdown">
-            正在跳转到下载页面... <span id="countdown">5</span> 秒
+        <div class="notice">
+            <h3>📱 应用下载说明</h3>
+            <p>本项目是完整的 Android 应用，需要先构建 APK 文件才能安装到手机。</p>
+            <p><strong>快速获取 APK 的方法：</strong></p>
+            <ul>
+                <li>在本地使用 Android Studio 构建（推荐）</li>
+                <li>使用 GitHub Actions 自动构建</li>
+                <li>使用 CI/CD 平台（如 Bitrise）</li>
+            </ul>
         </div>
         
-        <a href="https://github.com/user/repository/releases/download/v1.0.0/lockscreen_wallpaper.apk" class="download-btn">
-            立即下载
-        </a>
+        <div style="margin: 30px 0;">
+            <a href="/BUILD_APK.md" class="download-btn">
+                📖 查看构建指南
+            </a>
+            <a href="https://github.com/1yutong/backgroud" class="download-btn secondary">
+                🔗 访问 GitHub 仓库
+            </a>
+        </div>
         
         <div class="features">
             <h3>应用特性：</h3>
-            <div class="feature-item">自动定时更新锁屏壁纸</div>
+            <div class="feature-item">自动定时更新锁屏壁纸（每分钟）</div>
             <div class="feature-item">实时显示当前时间和日期</div>
-            <div class="feature-item">美观的渐变背景</div>
-            <div class="feature-item">后台服务持续运行</div>
-            <div class="feature-item">开机自启动</div>
+            <div class="feature-item">美观的深色渐变背景</div>
+            <div class="feature-item">前台服务确保持续运行</div>
+            <div class="feature-item">开机自启动功能</div>
+            <div class="feature-item">支持 Android 7.0+ 系统</div>
+        </div>
+        
+        <div class="notice" style="margin-top: 30px;">
+            <h3>🚀 快速构建命令</h3>
+            <p>如果你已安装 Android Studio：</p>
+            <div class="code-block">
+                1. 打开 Android Studio<br>
+                2. 导入 LockScreenWallpaper 项目<br>
+                3. 点击 Build → Build APK<br>
+                4. 在 app/build/outputs/apk/debug/ 找到 APK
+            </div>
         </div>
         
         <div class="footer">
             <p>版本：1.0.0 | 大小：约 5MB | 支持 Android 7.0+</p>
+            <p>项目地址：https://github.com/1yutong/backgroud</p>
         </div>
     </div>
 </body>
