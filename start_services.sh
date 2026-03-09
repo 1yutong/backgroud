@@ -140,7 +140,7 @@ fi
 
 # 启动 HTTP 服务器
 echo -e "${GREEN}启动 HTTP 服务器 (端口: ${HTTP_PORT})...${NC}"
-nohup python3 -m http.server "$HTTP_PORT" > "$HTTP_LOG" 2>&1 &
+nohup python3 -m http.server "$HTTP_PORT" --bind 0.0.0.0 > "$HTTP_LOG" 2>&1 &
 HTTP_PID=$!
 sleep 2
 
