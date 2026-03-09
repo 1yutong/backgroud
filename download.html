@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>锁屏时间壁纸应用 - 下载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #cccccc;
+            line-height: 1.5;
+        }
+        
+        .countdown {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #4ecdc4;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+            margin-top: 20px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.6);
+        }
+        
+        .features {
+            margin-top: 40px;
+            text-align: left;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            color: #cccccc;
+        }
+        
+        .feature-item::before {
+            content: "✓";
+            color: #4ecdc4;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #999999;
+        }
+    </style>
+    <script>
+        // 自动跳转倒计时
+        let seconds = 5;
+        const countdownElement = document.getElementById('countdown');
+        
+        function updateCountdown() {
+            if (seconds > 0) {
+                countdownElement.textContent = seconds;
+                seconds--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                // 跳转到下载链接
+                window.location.href = 'https://github.com/user/repository/releases/download/v1.0.0/lockscreen_wallpaper.apk';
+            }
+        }
+        
+        // 页面加载完成后开始倒计时
+        window.onload = function() {
+            updateCountdown();
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>锁屏时间壁纸应用</h1>
+        <p>自动更新锁屏壁纸，实时显示当前时间和日期</p>
+        
+        <div class="countdown">
+            正在跳转到下载页面... <span id="countdown">5</span> 秒
+        </div>
+        
+        <a href="https://github.com/user/repository/releases/download/v1.0.0/lockscreen_wallpaper.apk" class="download-btn">
+            立即下载
+        </a>
+        
+        <div class="features">
+            <h3>应用特性：</h3>
+            <div class="feature-item">自动定时更新锁屏壁纸</div>
+            <div class="feature-item">实时显示当前时间和日期</div>
+            <div class="feature-item">美观的渐变背景</div>
+            <div class="feature-item">后台服务持续运行</div>
+            <div class="feature-item">开机自启动</div>
+        </div>
+        
+        <div class="footer">
+            <p>版本：1.0.0 | 大小：约 5MB | 支持 Android 7.0+</p>
+        </div>
+    </div>
+</body>
+</html>

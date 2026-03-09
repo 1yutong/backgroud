@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+set -e
+
+if [ -n "$DEBUG" ]; then
+    set -x
+fi
+
+dirname="$(cd "$(dirname "$0")" && pwd)"
+
+if [ -f "$dirname/gradle/wrapper/gradle-wrapper.jar" ]; then
+    java -Dorg.gradle.appname="gradlew" "-Dorg.gradle.jvmargs=-Xmx1536M" -jar "$dirname/gradle/wrapper/gradle-wrapper.jar" "$@"
+else
+    echo "Error: gradle/wrapper/gradle-wrapper.jar not found"
+    exit 1
+fi
