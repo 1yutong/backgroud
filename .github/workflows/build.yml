@@ -21,11 +21,16 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     
+    - name: Setup Gradle
+      run: |
+        cd LockScreenWallpaper
+        gradle wrapper --gradle-version 8.2
+    
     - name: Build Debug APK
-      run: cd LockScreenWallpaper && gradle assembleDebug
+      run: cd LockScreenWallpaper && ./gradlew assembleDebug
     
     - name: Build Release APK
-      run: cd LockScreenWallpaper && gradle assembleRelease
+      run: cd LockScreenWallpaper && ./gradlew assembleRelease
     
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
